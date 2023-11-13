@@ -1,4 +1,3 @@
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -16,7 +15,8 @@ public class Main {
                 break;
             } else {
                 if (optionSelect == 1) {
-
+                    StepTracker stepTracker = new StepTracker();
+                    stepTracker.getStats();
                     System.out.println("Month: ");
                     String monthName = scanner.next();
 
@@ -26,7 +26,6 @@ public class Main {
                     System.out.println("Number of steps: ");
                     int stepsCounter = scanner.nextInt();
 
-                    StepTracker.saveStepCounter(monthName, dayNumber, stepsCounter, StepTracker.stepsForYear);
                 }
                 printMenu();
             }
