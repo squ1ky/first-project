@@ -5,6 +5,7 @@ public class Main {
 
         int optionSelect;
         Scanner scanner = new Scanner(System.in);
+        StepTracker stepTracker = new StepTracker();
         // WELCOME SECTION
         printMenu();
 
@@ -15,8 +16,6 @@ public class Main {
                 break;
             } else {
                 if (optionSelect == 1) {
-                    StepTracker stepTracker = new StepTracker();
-                    stepTracker.getStats();
                     System.out.println("Month: ");
                     String monthName = scanner.next();
 
@@ -25,7 +24,21 @@ public class Main {
 
                     System.out.println("Number of steps: ");
                     int stepsCounter = scanner.nextInt();
+                    if (stepTracker.checkData(dayNumber, monthName, stepsCounter)) {
+                        stepTracker.changeData(dayNumber, monthName, stepsCounter, stepTracker.monthToData);
+                    } else {
+                        System.out.println("Incorrect input");
+                    }
 
+                } else if (optionSelect == 2) {
+                    System.out.println("Month: ");
+                    String monthName = scanner.next();
+                    stepTracker.getMonth(monthName);
+                } else if (optionSelect == 3) {
+                    System.out.println("Your goal: ");
+                    int steps = scanner.nextInt();
+                    stepTracker.changeGoal(steps);
+                    System.out.println("Now your goal is " + stepTracker.printGoal() + " steps");
                 }
                 printMenu();
             }
